@@ -1,4 +1,5 @@
 <h1>Projeto Trending Youtube Video Stats Parte 2 <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"></h1>
+<h1>Ainda estou colocando os dados no relatório, pois o código ainda está em execução</h1>
 <h2>Observações:</h2>
 <p>Esse projeto é a parte 2 de um projeto com parte 1,onde a parte 2 completa a parte 1, é de suma importância acessar a parte 1 e entender a importância/desempenho dos algoritmos de ordenação implementados com a estrutura de dados Array.</p>
 <p>Para acessar a parte 1, acesse: https://github.com/LuizJDuarte/ProjetoLedaYoutubeVideosPart1/tree/master <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></p>
