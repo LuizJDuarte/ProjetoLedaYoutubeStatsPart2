@@ -1,206 +1,132 @@
 package src;
 
 import src.ordenacao.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import src.listas.ListaDuplamenteEncadeada;
+import src.arvores.ArvoreBinaria;
+import src.tabelas.TabelaHash;
+import src.listas.*;
+import src.arvores.*;
+import src.tabelas.*;
+
 import java.io.IOException;
 
 public class Main {
+
     public static void main(String[] args) {
-        String caminhoArquivoEntrada = "C:/Users/Luiz José/eclipse_projeto_leda/ProjetoLeda/videos_T1.csv"; //No caso, aqui você vai informar o lugar onde o videos_T1.csv, está no seu computador
+        String caminhoArquivo = "C:/Users/Luiz José/git/repository4/ProjetoLeda/videos_T1.csv";
 
-        
-        // Ordenações por título do canal ou channel title
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "melhor", "QuickSort", new QuickSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "medio", "QuickSort", new QuickSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "pior", "QuickSort", new QuickSort());
+        try {
+            // Teste para Lista Duplamente Encadeada
+            executarOrdenacaoListaDupla(caminhoArquivo, "comment_count");
+            executarOrdenacaoListaDupla(caminhoArquivo, "channel_title");
+            executarOrdenacaoListaDupla(caminhoArquivo, "trending_full_date");
 
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "melhor", "QuickSort3", new QuickSort3());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "medio", "QuickSort3", new QuickSort3());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "pior", "QuickSort3", new QuickSort3());
+            // Teste para Tabela Hash
+            executarOrdenacaoTabelaHash(caminhoArquivo, "comment_count");
+            executarOrdenacaoTabelaHash(caminhoArquivo, "channel_title");
+            executarOrdenacaoTabelaHash(caminhoArquivo, "trending_full_date");
 
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "melhor", "MergeSort", new MergeSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "medio", "MergeSort", new MergeSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "pior", "MergeSort", new MergeSort());
+            // Teste para Árvore Binária
+            executarOrdenacaoArvore(caminhoArquivo, "comment_count");
+            executarOrdenacaoArvore(caminhoArquivo, "channel_title");
+            executarOrdenacaoArvore(caminhoArquivo, "trending_full_date");
 
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "melhor", "HeapSort", new HeapSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "medio", "HeapSort", new HeapSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "pior", "HeapSort", new HeapSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "melhor", "SelectionSort", new SelectionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "medio", "SelectionSort", new SelectionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "pior", "SelectionSort", new SelectionSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "melhor", "InsertionSort", new InsertionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "medio", "InsertionSort", new InsertionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "channel_title", "pior", "InsertionSort", new InsertionSort());
-
-        
-        // Ordenações por número de comentários ou comment count
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "melhor", "SelectionSort", new SelectionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "medio", "SelectionSort", new SelectionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "pior", "SelectionSort", new SelectionSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "melhor", "InsertionSort", new InsertionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "medio", "InsertionSort", new InsertionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "pior", "InsertionSort", new InsertionSort());
-        
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "melhor", "QuickSort", new QuickSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "medio", "QuickSort", new QuickSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "pior", "QuickSort", new QuickSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "melhor", "QuickSort3", new QuickSort3());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "medio", "QuickSort3", new QuickSort3());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "pior", "QuickSort3", new QuickSort3());
-
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "melhor", "MergeSort", new MergeSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "medio", "MergeSort", new MergeSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "pior", "MergeSort", new MergeSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "melhor", "HeapSort", new HeapSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "medio", "HeapSort", new HeapSort());
-        executarOrdenacao(caminhoArquivoEntrada, "comment_count", "pior", "HeapSort", new HeapSort());
-        
-        // Ordenações por trending full date
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "melhor", "QuickSort", new QuickSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "medio", "QuickSort", new QuickSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "pior", "QuickSort", new QuickSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "melhor", "QuickSort3", new QuickSort3());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "medio", "QuickSort3", new QuickSort3());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "pior", "QuickSort3", new QuickSort3());
-
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "melhor", "MergeSort", new MergeSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "medio", "MergeSort", new MergeSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "pior", "MergeSort", new MergeSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "melhor", "HeapSort", new HeapSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "medio", "HeapSort", new HeapSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "pior", "HeapSort", new HeapSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "melhor", "SelectionSort", new SelectionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "medio", "SelectionSort", new SelectionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "pior", "SelectionSort", new SelectionSort());
-
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "melhor", "InsertionSort", new InsertionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "medio", "InsertionSort", new InsertionSort());
-        executarOrdenacao(caminhoArquivoEntrada, "trending_full_date", "pior", "InsertionSort", new InsertionSort());
-       
-
-
-        
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void executarOrdenacao(String caminhoArquivoEntrada, String campoOrdenacao, String caso, String algoritmo, Object algoritmoOrdenacao) {
-        
-    	System.out.println("Lendo dados do arquivo: " + caminhoArquivoEntrada);
-        String[][] dados = lerCSV(caminhoArquivoEntrada);
-        
+    private static void executarOrdenacaoListaDupla(String caminhoArquivo, String campoOrdenacao) throws IOException {
+        System.out.println("Lendo dados do arquivo: " + caminhoArquivo);
+        ListaDuplamenteEncadeada<StringArrayComparable> dados = UtilCSV.lerCSVListaDupla(caminhoArquivo);
+        System.out.println("Dados lidos para Lista Duplamente Encadeada.");
 
-        System.out.println("Preparando dados para o caso: " + caso);
-        
-        String[][] dadosCaso = prepararCaso(dados, campoOrdenacao, caso);
+        ordenarEDepositarListaDupla(dados, new QuickSort<>(), campoOrdenacao, "QuickSort", "ListaDuplamenteEncadeada", caminhoArquivo);
+        ordenarEDepositarListaDupla(dados, new QuickSort3<>(), campoOrdenacao, "QuickSort3", "ListaDuplamenteEncadeada", caminhoArquivo);
+        ordenarEDepositarListaDupla(dados, new MergeSort<>(), campoOrdenacao, "MergeSort", "ListaDuplamenteEncadeada", caminhoArquivo);
+        ordenarEDepositarListaDupla(dados, new HeapSort<>(), campoOrdenacao, "HeapSort", "ListaDuplamenteEncadeada", caminhoArquivo);
+        ordenarEDepositarListaDupla(dados, new SelectionSort<>(), campoOrdenacao, "SelectionSort", "ListaDuplamenteEncadeada", caminhoArquivo);
+        ordenarEDepositarListaDupla(dados, new InsertionSort<>(), campoOrdenacao, "InsertionSort", "ListaDuplamenteEncadeada", caminhoArquivo);
+    }
 
+    private static void executarOrdenacaoTabelaHash(String caminhoArquivo, String campoOrdenacao) throws IOException {
+        System.out.println("Lendo dados do arquivo: " + caminhoArquivo);
+        TabelaHash<String, StringArrayComparable> dados = UtilCSV.lerCSVHash(caminhoArquivo);
+        System.out.println("Dados lidos para Tabela Hash.");
+
+        ordenarEDepositarTabelaHash(dados, new QuickSort<>(), campoOrdenacao, "QuickSort", "TabelaHash", caminhoArquivo);
+        ordenarEDepositarTabelaHash(dados, new QuickSort3<>(), campoOrdenacao, "QuickSort3", "TabelaHash", caminhoArquivo);
+        ordenarEDepositarTabelaHash(dados, new MergeSort<>(), campoOrdenacao, "MergeSort", "TabelaHash", caminhoArquivo);
+        ordenarEDepositarTabelaHash(dados, new HeapSort<>(), campoOrdenacao, "HeapSort", "TabelaHash", caminhoArquivo);
+        ordenarEDepositarTabelaHash(dados, new SelectionSort<>(), campoOrdenacao, "SelectionSort", "TabelaHash", caminhoArquivo);
+        ordenarEDepositarTabelaHash(dados, new InsertionSort<>(), campoOrdenacao, "InsertionSort", "TabelaHash", caminhoArquivo);
+    }
+
+    private static void executarOrdenacaoArvore(String caminhoArquivo, String campoOrdenacao) throws IOException {
+        System.out.println("Lendo dados do arquivo: " + caminhoArquivo);
+        ArvoreBinaria<StringArrayComparable> dados = UtilCSV.lerCSVArvore(caminhoArquivo);
+        System.out.println("Dados lidos para Árvore Binária.");
+
+        ordenarEDepositarArvore(dados, new QuickSort<>(), campoOrdenacao, "QuickSort", "ArvoreBinaria", caminhoArquivo);
+        ordenarEDepositarArvore(dados, new QuickSort3<>(), campoOrdenacao, "QuickSort3", "ArvoreBinaria", caminhoArquivo);
+        ordenarEDepositarArvore(dados, new MergeSort<>(), campoOrdenacao, "MergeSort", "ArvoreBinaria", caminhoArquivo);
+        ordenarEDepositarArvore(dados, new HeapSort<>(), campoOrdenacao, "HeapSort", "ArvoreBinaria", caminhoArquivo);
+        ordenarEDepositarArvore(dados, new SelectionSort<>(), campoOrdenacao, "SelectionSort", "ArvoreBinaria", caminhoArquivo);
+        ordenarEDepositarArvore(dados, new InsertionSort<>(), campoOrdenacao, "InsertionSort", "ArvoreBinaria", caminhoArquivo);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T extends Comparable<T>> void ordenarEDepositarListaDupla(ListaDuplamenteEncadeada<T> dados, Ordenacao<T> algoritmoOrdenacao, String campoOrdenacao, String nomeAlgoritmo, String estruturaDados, String caminhoArquivo) throws IOException {
+        String caso = "melhor";
+        System.out.println("Ordenando dados pelo campo: " + campoOrdenacao + " usando " + nomeAlgoritmo + " para " + estruturaDados + " no caso " + caso);
         long inicio = System.currentTimeMillis();
-        
-        System.out.println("Ordenando dados pelo campo: " + campoOrdenacao + " usando " + algoritmo);
-        
-        if (algoritmoOrdenacao instanceof QuickSort) {
-            ((QuickSort) algoritmoOrdenacao).ordenar(dadosCaso, getIndiceCampo(campoOrdenacao));
-        } else if (algoritmoOrdenacao instanceof QuickSort3) {
-            ((QuickSort3) algoritmoOrdenacao).ordenar(dadosCaso, getIndiceCampo(campoOrdenacao));
-        } else if (algoritmoOrdenacao instanceof MergeSort) {
-            ((MergeSort) algoritmoOrdenacao).ordenar(dadosCaso, getIndiceCampo(campoOrdenacao));
-        } else if (algoritmoOrdenacao instanceof HeapSort) {
-            ((HeapSort) algoritmoOrdenacao).ordenar(dadosCaso, getIndiceCampo(campoOrdenacao));
-        } else if (algoritmoOrdenacao instanceof SelectionSort) {
-            ((SelectionSort) algoritmoOrdenacao).ordenar(dadosCaso, getIndiceCampo(campoOrdenacao));
-        } else if (algoritmoOrdenacao instanceof InsertionSort) {
-            ((InsertionSort) algoritmoOrdenacao).ordenar(dadosCaso, getIndiceCampo(campoOrdenacao));
-        }
-
+        algoritmoOrdenacao.ordenar(dados, getIndiceCampo(campoOrdenacao));
         long fim = System.currentTimeMillis();
-        System.out.println("Tempo de execução para " + algoritmo + " no caso " + caso + ": " + (fim - inicio) + "ms");
+        System.out.println("Tempo de execução para " + nomeAlgoritmo + " no caso " + caso + ": " + (fim - inicio) + "ms");
 
-        String nomeArquivoSaida = "videos_T1_" + campoOrdenacao + "_" + algoritmo + "_" + caso + "Caso.csv";
-        escreverCSV(nomeArquivoSaida, dadosCaso);
-        System.out.println("Dados ordenados salvos em: " + nomeArquivoSaida);
+        String caminhoSaida = caminhoArquivo.replace(".csv", "_" + campoOrdenacao + "_" + nomeAlgoritmo + "_" + caso + "_" + estruturaDados + ".csv");
+        UtilCSV.escreverCSVListaDupla(caminhoSaida, (ListaDuplamenteEncadeada<StringArrayComparable>) dados);
+        System.out.println("Dados ordenados salvos em: " + caminhoSaida);
     }
 
-    private static String[][] lerCSV(String caminho) {
-        String[][] dados = new String[375942][16]; // coloquei o tamanho conforme o que eu usei
-        try (BufferedReader br = new BufferedReader(new FileReader(caminho))) {
-            String linha;
-            int i = 0;
-            
-            
-            while ((linha = br.readLine()) != null) {
-                dados[i++] = linha.split(",");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return dados;
+    @SuppressWarnings("unchecked")
+    private static <T extends Comparable<T>> void ordenarEDepositarTabelaHash(TabelaHash<String, T> dados, Ordenacao<T> algoritmoOrdenacao, String campoOrdenacao, String nomeAlgoritmo, String estruturaDados, String caminhoArquivo) throws IOException {
+        String caso = "melhor";
+        System.out.println("Ordenando dados pelo campo: " + campoOrdenacao + " usando " + nomeAlgoritmo + " para " + estruturaDados + " no caso " + caso);
+        long inicio = System.currentTimeMillis();
+        algoritmoOrdenacao.ordenar(dados, getIndiceCampo(campoOrdenacao));
+        long fim = System.currentTimeMillis();
+        System.out.println("Tempo de execução para " + nomeAlgoritmo + " no caso " + caso + ": " + (fim - inicio) + "ms");
+
+        String caminhoSaida = caminhoArquivo.replace(".csv", "_" + campoOrdenacao + "_" + nomeAlgoritmo + "_" + caso + "_" + estruturaDados + ".csv");
+        UtilCSV.escreverCSVHash(caminhoSaida, (TabelaHash<String, StringArrayComparable>) dados);
+        System.out.println("Dados ordenados salvos em: " + caminhoSaida);
     }
 
-    private static String[][] prepararCaso(String[][] dados, String campoOrdenacao, String caso) {
-        //
-        return dados;
+    @SuppressWarnings("unchecked")
+    private static <T extends Comparable<T>> void ordenarEDepositarArvore(ArvoreBinaria<T> dados, Ordenacao<T> algoritmoOrdenacao, String campoOrdenacao, String nomeAlgoritmo, String estruturaDados, String caminhoArquivo) throws IOException {
+        String caso = "melhor";
+        System.out.println("Ordenando dados pelo campo: " + campoOrdenacao + " usando " + nomeAlgoritmo + " para " + estruturaDados + " no caso " + caso);
+        long inicio = System.currentTimeMillis();
+        algoritmoOrdenacao.ordenar(dados, getIndiceCampo(campoOrdenacao));
+        long fim = System.currentTimeMillis();
+        System.out.println("Tempo de execução para " + nomeAlgoritmo + " no caso " + caso + ": " + (fim - inicio) + "ms");
+
+        String caminhoSaida = caminhoArquivo.replace(".csv", "_" + campoOrdenacao + "_" + nomeAlgoritmo + "_" + caso + "_" + estruturaDados + ".csv");
+        UtilCSV.escreverCSVArvore(caminhoSaida, (ArvoreBinaria<StringArrayComparable>) dados);
+        System.out.println("Dados ordenados salvos em: " + caminhoSaida);
     }
 
-    private static void escreverCSV(String caminho, String[][] dados) {
-        
-    	try (FileWriter writer = new FileWriter(caminho)) {
-            for (String[] linha : dados) {
-                writer.write(String.join(",", linha) + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static int getIndiceCampo(String campo) {
-    	
-        switch (campo) {
-            case "video_id":
-                return 0;
-            case "trending_date":
-                return 1;
-            case "title":
-                return 2;
-            case "channel_title":
-                return 3;
-            case "category_id":
-                return 4;
-            case "publish_time":
-                return 5;
-            case "tags":
-                return 6;
-            case "views":
-                return 7;
-            case "likes":
-                return 8;
-            case "dislikes":
-                return 9;
+    private static int getIndiceCampo(String campoOrdenacao) {
+        switch (campoOrdenacao) {
             case "comment_count":
-                return 10;
-            case "thumbnail_link":
-                return 11;
-            case "comments_disabled":
-                return 12;
-            case "ratings_disabled":
-                return 13;
-            case "video_error_or_removed":
-                return 14;
-            case "description":
-                return 15;
-            case "countries":
-                return 16;
+                return 0;
+            case "channel_title":
+                return 1;
             case "trending_full_date":
-                return 17;
+                return 2;
             default:
-                throw new IllegalArgumentException("Campo de ordenação inválido: " + campo); 
+                throw new IllegalArgumentException("Campo de ordenação inválido");
         }
     }
 }

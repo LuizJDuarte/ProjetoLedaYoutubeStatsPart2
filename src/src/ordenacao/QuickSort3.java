@@ -1,36 +1,91 @@
 package src.ordenacao;
 
-public class QuickSort3 {
-    public void ordenar(String[][] array, int indice) {
-        quickSort(array, indice, 0, array.length - 1);
+import src.StringArrayComparable;
+import src.listas.ListaDuplamenteEncadeada;
+import src.arvores.ArvoreBinaria;
+import src.tabelas.TabelaHash;
+
+import java.util.Comparator;
+
+public class QuickSort3<T extends Comparable<T>> implements Ordenacao<T> {
+
+    @Override
+    public void ordenar(ListaDuplamenteEncadeada<T> lista, int indice) {
+        quickSort(lista, 0, lista.getTamanho() - 1);
     }
 
-    private void quickSort(String[][] array, int indice, int baixo, int alto) {
-        if (baixo < alto) {
-            int pi = particionar(array, indice, baixo, alto);
-
-            quickSort(array, indice, baixo, pi - 1);
-            quickSort(array, indice, pi + 1, alto);
-        }
-    }
-
-    private int particionar(String[][] array, int indice, int baixo, int alto) {
-        String[] pivo = array[baixo + (alto - baixo) / 3]; // Pivô como o terço para a mediana
-        int i = baixo - 1;
-
-        for (int j = baixo; j < alto; j++) {
-            if (array[j][indice].compareTo(pivo[indice]) <= 0) {
-                i++;
-                String[] temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+    @Override
+    public void ordenar(TabelaHash<String, T> tabela, int indice) {
+        ListaDuplamenteEncadeada<T> lista = new ListaDuplamenteEncadeada<>();
+        for (var bucket : tabela.getEntradas()) {
+            for (var entrada : bucket) {
+                lista.adicionar(entrada.getValor());
             }
         }
+        quickSort(lista, 0, lista.getTamanho() - 1);
+        int i = 0;
+        for (var bucket : tabela.getEntradas()) {
+            for (var entrada : bucket) {
+                entrada.setValor(lista.get(i++));
+            }
+        }
+    }
 
-        String[] temp = array[i + 1];
-        array[i + 1] = array[alto];
-        array[alto] = temp;
+    @Override
+    public void ordenar(ArvoreBinaria<T> arvore, int indice) {
+        ListaDuplamenteEncadeada<T> lista = new ListaDuplamenteEncadeada<>();
+        arvore.emOrdem(lista::adicionar);
+        quickSort(lista, 0, lista.getTamanho() - 1);
+        arvore.limpar();
+        for (int i = 0; i < lista.getTamanho(); i++) {
+            arvore.inserir(lista.get(i), Comparator.comparing(arr -> ((StringArrayComparable) arr).getArray()[indice]));
+        }
+    }
 
+    private void quickSort(ListaDuplamenteEncadeada<T> lista, int esquerda, int direita) {
+        if (esquerda < direita) {
+            int pivo = particionar(lista, esquerda, direita);
+            quickSort(lista, esquerda, pivo - 1);
+            quickSort(lista, pivo + 1, direita);
+        }
+    }
+
+    private int particionar(ListaDuplamenteEncadeada<T> lista, int esquerda, int direita) {
+        int meio = (esquerda + direita) / 2;
+        T pivo = medianaDeTres(lista, esquerda, meio, direita);
+        lista.set(meio, lista.get(direita));
+        lista.set(direita, pivo);
+        int i = (esquerda - 1);
+        for (int j = esquerda; j < direita; j++) {
+            if (lista.get(j).compareTo(pivo) <= 0) {
+                i++;
+                T troca = lista.get(i);
+                lista.set(i, lista.get(j));
+                lista.set(j, troca);
+            }
+        }
+        T troca = lista.get(i + 1);
+        lista.set(i + 1, lista.get(direita));
+        lista.set(direita, troca);
         return i + 1;
+    }
+
+    private T medianaDeTres(ListaDuplamenteEncadeada<T> lista, int esquerda, int meio, int direita) {
+        if (lista.get(esquerda).compareTo(lista.get(meio)) > 0) {
+            trocar(lista, esquerda, meio);
+        }
+        if (lista.get(esquerda).compareTo(lista.get(direita)) > 0) {
+            trocar(lista, esquerda, direita);
+        }
+        if (lista.get(meio).compareTo(lista.get(direita)) > 0) {
+            trocar(lista, meio, direita);
+        }
+        return lista.get(meio);
+    }
+
+    private void trocar(ListaDuplamenteEncadeada<T> lista, int i, int j) {
+        T temp = lista.get(i);
+        lista.set(i, lista.get(j));
+        lista.set(j, temp);
     }
 }
