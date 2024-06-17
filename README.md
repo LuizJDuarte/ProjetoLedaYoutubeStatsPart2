@@ -66,8 +66,26 @@
 <p>Clique em download e espere instalar</p>
 
 <p>Passo 13:</p>
-<img src="AssetsProjetoLeda2\passo13.png">
-<p>Após instalado vai repetir o processo de extrair e você vai extrair para a pasta ProjetoLedaYoutubeStatsPart1-Master</p>
+<img src="AssetsProjetoLeda2\passo14.png">
+<img src="AssetsProjetoLeda2\passo15.png">
+<p>Você deve extrair os arquivos para essa pasta ProjetoLeda ou seja qual for a pasta do repositório(Assim como as imagens acima)</p>
+
+<h3>Passos inciais para rodar o projeto</h3>
+
+<p>Passo 14: Hora de rodar as ordenações, elas são o primeiro passo para fazer os arquivos que iremos usar posteriormente no código principal.</p>
+<ol>
+    <li>Você ira entrar no código do Separar vídeos e colocar para rodar(veja as imagens abaixo).</li>
+    <img src="AssetsProjetoLeda2\passo16.png">
+    <img src="AssetsProjetoLeda2\passo17.png">
+    <li>Agora, verifique se o arquivo foi gerado no diretório ou pasta que está direcionado no código(**<b>LEMBRANDO QUE OS ARQUIVOS DEVEM ESTAR DENTRO DO DIRETÓRIO COMO DITO ANTERIORMENTE, PARA QUE FUNCIONE.</b>**):</li>
+    <li>Dessa forma, agora entre no arquivo .java FormatarVideos</li>
+    <img src="AssetsProjetoLeda2\passo18.png">
+    <li>Dentro do código vai ter dizendo o nome do arquivo que vai pegar e o que vai gerar</li>
+    <li>Agora, rode o código e irá gerar o arquivo Videos_T1.csv</li>
+    <img src="AssetsProjetoLeda2\passo19.png">
+    <li>Finalmente podemos rodar o main.java agora, entre no arquivo assim como fez com os anteriores e rode o mesmo.</li>
+</ol>
+
 <p>Depois de colocar os dados lá, volte para o Eclipse IDE, aperte aqui e veja no relatório disponibilizado aqui o que cada arquivo .java faz.</p>
 <p><b>LEMBRANDO QUE SEMPRE QUE VOCÊ FOR RODAR OS CÓDIGOS DEVE COLOCAR OS CAMINHOS DE ACORDO COM O SEU SISTEMA OPERACIONAL(Linux, Mac ou Windows)</b></p>
 <p>Caso esteja com dificuldade nessa parte, acesse os links abaixo:</p>
