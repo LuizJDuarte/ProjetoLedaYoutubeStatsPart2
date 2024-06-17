@@ -5,7 +5,7 @@
 <p>Para acessar a parte 1, acesse: https://github.com/LuizJDuarte/ProjetoLedaYoutubeVideosPart1/tree/master <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></p>
 
 <h2>Passo a passo para rodar o projeto:</h3>
-<p>(Esse passo a passo é do projeto 1, mas serve para o projeto 2)</p>
+<p>(Esse passo a passo é do projeto 1 e 2(misturados), mas serve para o projeto 2)</p>
 <h4><b>(Passo a passo para que usa o Eclipse IDE, caso não use o mesmo, baixe e instale as configurações necessárias) </b></h4>
 <img src="https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=eclipse&logoColor=white">
 <h4><b>(Outro item necessário na instalação é o WinRar ou algum descompactador da sua preferência)</b></h4>
