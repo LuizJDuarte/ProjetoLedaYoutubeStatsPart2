@@ -66,7 +66,7 @@
 <p>Clique em download e espere instalar</p>
 
 <p>Passo 13:</p>
-<img src="AssetsProjetoLeda2\passo14.png">
+<img src="AssetsProjetoLeda2\Passo14.png">
 <img src="AssetsProjetoLeda2\passo15.png">
 <p>Você deve extrair os arquivos para essa pasta ProjetoLeda ou seja qual for a pasta do repositório(Assim como as imagens acima)</p>
 
@@ -83,10 +83,12 @@
     <li>Dentro do código vai ter dizendo o nome do arquivo que vai pegar e o que vai gerar</li>
     <li>Agora, rode o código e irá gerar o arquivo Videos_T1.csv</li>
     <img src="AssetsProjetoLeda2\passo19.png">
-    <li>Finalmente podemos rodar o main.java agora, entre no arquivo assim como fez com os anteriores e rode o mesmo.</li>
+    <li>Finalmente podemos rodar o main.java agora, entre no arquivo e coloque o endereço de onde está o videos_T1.csv no seu computador.</li>
+    <img src="AssetsProjetoLeda2\passo20.png">
+    <li>Coloque o endereço e rode o código clicando no Run.</li>
 </ol>
 
-<p>Depois de colocar os dados lá, volte para o Eclipse IDE, aperte aqui e veja no relatório disponibilizado aqui o que cada arquivo .java faz.</p>
+<p>Depois de executar o projeto, aperte aqui e veja no relatório disponibilizado aqui o que cada arquivo .java faz e as análises técnicas sobre o projeto.</p>
 <p><b>LEMBRANDO QUE SEMPRE QUE VOCÊ FOR RODAR OS CÓDIGOS DEVE COLOCAR OS CAMINHOS DE ACORDO COM O SEU SISTEMA OPERACIONAL(Linux, Mac ou Windows)</b></p>
 <p>Caso esteja com dificuldade nessa parte, acesse os links abaixo:</p>
 <p><img src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white"> Link(Mac):https://youtu.be/6EMKBFrk4K8?si=8D4kpnxOmg71RO20</p>
